@@ -1,0 +1,49 @@
+// calc unity
+// trabalho.barão.de.maua
+//Projeto Calculadora(Desenvolver uma calculadora usando c#).
+
+
+
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using System.Data;
+
+public class CalculadoraController : MonoBehaviour
+{
+
+    [SerializeField] private Text TextDisplayI;
+    [SerializeField] private Text TextDisplayII;
+
+    private string expression;
+    private string c;
+    private string result;
+    
+    void Start()
+    {
+        TextDisplayI.text = "";
+        TextDisplayII.text = "";
+    }
+
+    public void BtnCharacter(string character)
+    {
+        TextDisplayII.text = character;
+        TextDisplayI.text = TextDisplayI.text + TextDisplayII.text;
+    }
+
+    public void ExpressionCalculator()
+    {
+        _expression = TextDisplayI.text;
+        DataTable table = new DataTable("tabela");
+        _result = table.Compute(_expression, string.Empty).ToString();
+        TextDisplayII.text = _result;
+        TextDisplayI.text = "";
+    }
+
+    public void C()
+    {
+        TextDisplayI.text = "";
+        TextDisplayII.text = "";
+    }
